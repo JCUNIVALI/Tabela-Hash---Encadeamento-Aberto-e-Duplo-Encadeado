@@ -70,7 +70,6 @@ void tabela() {
 	}
 
 }
-/*VER COMO GERAR A PLANILHA*/
 
 
 
