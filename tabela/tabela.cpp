@@ -2,10 +2,12 @@
 //
 
 #include "stdafx.h"
-
+#include "EnderecamentoAberto.h"
 
 int main()
 {
+	tabela();
+
     return 0;
 }
 
