@@ -35,8 +35,8 @@ void iniciarVet(Dado vet[]) {
 	}
 }
 bool inserir(Dado vet[],Dado *d) {
-	int chave = d->chave, i = 1;
-	while (chave <MAX) {
+	int chave = d->chave, i = 1, volta = 1;
+	while (true) {
 		if (vet[chave].dado == "") {	//acha um local pra salvar o dado;;
 			vet[chave].dado = d->dado;
 			vet[chave].chave = d->chave;
@@ -44,35 +44,49 @@ bool inserir(Dado vet[],Dado *d) {
 			return true;
 		}
 		i++;
-		chave++;					//incrementa o local do vetor q vai ser verificado se esta vazio;;
+		if (chave == MAX) {
+			chave = 0;
+			volta++;
+		}
+		if (volta == 3)
+			return false;
+		else
+			chave++;		//incrementa o local do vetor q vai ser verificado se esta vazio;;
 	}
-	return false;
 }
 bool verificaDado(Dado vet[],string t, int &op) {		//retorna verdadeiro se o dado ja existir no vetor;;
-	int chave = geraChave(t);
+	int chave = geraChave(t), volta = 1;
 	if (vet[chave].dado == t) {
 		op = vet[chave].op;
 		return true;
 	}
 	int temp= geraChave(t);
-	while (chave <MAX) {
+	while (true) {
 		if (vet[chave].chave == temp && vet[chave].dado == t) {
 			op = vet[chave].op;
 			return true;
 		}
-		chave++;
+		if (chave == MAX) {
+			chave = 0;
+			volta++;
+		}
+		if (volta == 3)
+			return false;
+		else
+			chave++;
 	}
-	return false;
 }
 Dado buscaDado(Dado vet[], string t, int op) {			//retorna um dado que ja existe no vetor;;
 	int chave = geraChave(t);
 	if (vet[chave].dado == t && vet[chave].op==op)
 		return vet[chave];
 	int temp = geraChave(t);
-	while (chave <MAX) {
+	while (true) {
 		if (vet[chave].chave == temp && vet[chave].dado == t && vet[chave].op == op) {
 			return vet[chave];
 		}
+		if (chave == MAX)
+			chave = 0;
 		chave++;
 	}
 }
@@ -121,6 +135,37 @@ void simulacaoBusca(Dado vet[]) {
 		arq << x << "- Dado gerado: " << temp[x] << "\n";
 	}
 }
+void buscaManual(Dado vet[], string t) {
+	int opTemp = 1;
+	if (verificaDado(vet, t, opTemp))
+		procurarDado(vet,t);
+}
+void realizarBuscaManual(Dado vet[]) {
+	cout << "Desejas realizar uma busca manual de um dado? (s/n)" << endl;
+	char opcao;
+	cin >> opcao;
+	if (opcao != 's' && opcao != 'S')
+		return;
+	cout << "Quantas busca desejas fazer?" << endl;
+	int buscas;
+	cin >> buscas;
+	string *temp = new string[buscas];
+	arq <<"Busca manual realiazda: "<< "\n";
+	for (int i = 0; i < buscas; i++) {
+		cout << i << "- Dado a ser pesquisado: ";
+		cin >> temp[i];
+		arq <<i<<"- Dado ["+temp[i]+"]"<< "\n";
+	}
+	for (int i = 0; i < buscas; i++) {
+		int opTemp = 1;
+		if (verificaDado(vet, temp[i], opTemp))
+			procurarDado(vet, temp[i]);
+		else {
+			cout << "Busca-->Dado nao encontrado [" + temp[i] + "]" << endl;
+			arq << "Busca-->Dado nao encontrado [" + temp[i] + "]\n";
+		}
+	}
+}
 void tabela() {
 	Dado vet[MAX];
 	iniciarVet(vet);
@@ -147,6 +192,7 @@ void tabela() {
 		cout << "Dado: " << vet[x].dado << " Chave: " << vet[x].chave <<" OP: "<<vet[x].op<<endl;
 	}
 	simulacaoBusca(vet);
+	realizarBuscaManual(vet);
 }
 
 
