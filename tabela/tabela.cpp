@@ -13,8 +13,10 @@ const int TAMSTRING = 6;
 #include "HashEncadeado.h"
 
 int main()
-{
-	//EnderecamentoAberto();
+{	
+	cout << "###############Enderecamento Aberto##########################" << endl;
+	EnderecamentoAberto();
+	cout << "###############Enderecamento Encadeado#######################" << endl;
 	HashEncadeado();
     return 0;
 }
