@@ -1,32 +1,13 @@
 #ifndef ENDERECAMENTOABERTO_H
 #define ENDERECAMENTOABERTO_H
-
-#include <fstream>
 #include <string>
 #include <iostream>
+#include "stdafx.h"
+#include <fstream>
 #include <time.h>
 using namespace std;
-const int MAX = 1000;
-const int TAMSTRING = 6;
 ofstream arq("saida.csv", ofstream::app);		//Tornei global para gravar as buscas também;;
-struct Dado {
-	string dado;
-	int chave;
-	int op;
-};
-int geraChave(string t) {
-	long int chave = 1;
-	for (int x = 0; x <3; x++) {
-		chave *= (int)t[x];
-	}
-	if (chave > MAX) {
-		chave= chave % MAX;
-	}
-	chave--;
-	if (chave < 0)
-		chave = 0;
-	return chave;
-}
+
 void iniciarVet(Dado vet[]) {
 	for (int x = 0; x < MAX; x++) {
 		vet[x].dado = "";
@@ -166,7 +147,7 @@ void realizarBuscaManual(Dado vet[]) {
 		}
 	}
 }
-void tabela() {
+void EnderecamentoAberto() {
 	Dado vet[MAX];
 	iniciarVet(vet);
 	srand(time(NULL));
