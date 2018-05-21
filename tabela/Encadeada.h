@@ -15,9 +15,6 @@ struct ListaEnc {
 	int qtd;
 };
 void iniciar_lista_encadeada(ListaEnc &l) {
-	l.primeiro->dado.dado = "";
-	l.primeiro->dado.chave = -1;
-	l.primeiro->dado.op = 0;
 	l.qtd = 0;
 	l.primeiro = NULL;
 }
@@ -37,16 +34,16 @@ bool inserir_fim_lista_encadeada(ListaEnc &l, Dado dado) {
 		return inserir_inicio_lista_encadeada(l, dado);
 	}
 	ElementoEnc *e = new ElementoEnc;
-	if (e == NULL)
-		return false;
 	e->dado = dado;
+	e->dado.op = 1;
 	e->proximo = NULL;
 	ElementoEnc *temp = l.primeiro;
 	while (temp->proximo != NULL) {
 		temp = temp->proximo;
-		temp->dado.op++;
+		e->dado.op++;
 	}
 	temp->proximo = e;
+	cout << temp->proximo->dado.dado << endl;
 	l.qtd++;
 	return true;
 }

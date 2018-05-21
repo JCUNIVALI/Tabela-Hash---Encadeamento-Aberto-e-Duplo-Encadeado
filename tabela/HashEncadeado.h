@@ -11,12 +11,10 @@ void inserir(ListaEnc vet,Dado d) {
 }
 void escrever(ListaEnc vet) {
 	ElementoEnc *temp = vet.primeiro;
-	int x = 1;
 	while (temp != NULL) {
 		cout << "Dado: " << vet.primeiro->dado.dado << ", Chave :" << vet.primeiro->dado.chave << ", OP: " << vet.primeiro->dado.op << "\t";
 		arq2 << "Dado:" << vet.primeiro->dado.dado << ", Chave :" << vet.primeiro->dado.chave << ", OP: " << vet.primeiro->dado.op << "\t";
 		temp = temp->proximo;
-		x++;
 	}
 	arq << "\n";
 	cout << "\n";
