@@ -23,7 +23,6 @@ bool inserir_inicio_lista_encadeada(ListaEnc &l, Dado dado) {
 	if (e == NULL)
 		return false;
 	e->dado = dado;
-	e->dado.op = 1;
 	e->proximo = l.primeiro;
 	l.primeiro = e;
 	l.qtd++;
@@ -35,7 +34,7 @@ bool inserir_fim_lista_encadeada(ListaEnc &l, Dado dado) {
 	}
 	ElementoEnc *e = new ElementoEnc;
 	e->dado = dado;
-	e->dado.op = 1;
+	e->dado.op++;
 	e->proximo = NULL;
 	ElementoEnc *temp = l.primeiro;
 	while (temp->proximo != NULL) {
@@ -43,7 +42,6 @@ bool inserir_fim_lista_encadeada(ListaEnc &l, Dado dado) {
 		e->dado.op++;
 	}
 	temp->proximo = e;
-	cout << temp->proximo->dado.dado << endl;
 	l.qtd++;
 	return true;
 }
