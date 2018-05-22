@@ -25,6 +25,7 @@ bool inserir_inicio_lista_encadeada(ListaEnc &l, Dado dado) {
 	e->dado = dado;
 	e->proximo = l.primeiro;
 	l.primeiro = e;
+	arq2 << "Dado: " << e->dado.dado << ", Chave :" << e->dado.chave << ", OP: " << e->dado.op << "\n";
 	l.qtd++;
 	return true;
 }
@@ -42,6 +43,7 @@ bool inserir_fim_lista_encadeada(ListaEnc &l, Dado dado) {
 		e->dado.op++;
 	}
 	temp->proximo = e;
+	arq2 << "Dado: " << e->dado.dado << ", Chave :" << e->dado.chave << ", OP: " << e->dado.op << "\n";
 	l.qtd++;
 	return true;
 }

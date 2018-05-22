@@ -1,6 +1,9 @@
 #ifndef DADO_H
 #define DADO_H
 using namespace std;
+
+#include <fstream>
+ofstream arq2("saidaHaschEncadeado.csv", ofstream::app);
 struct Dado {
 	string dado;
 	int chave;

@@ -2,7 +2,6 @@
 #define HASHENCADEADO_H
 
 #include "Encadeada.h"
-ofstream arq2("saidaHaschEncadeado.csv", ofstream::app);
 
 using namespace std;
 
@@ -80,7 +79,7 @@ void escrever(ListaEnc l, int c) {
 	cout << "CHAVE [" << c << "]:" << endl;
 	arq2 << "CHAVE [" << c << "]:\n";
 	while (temp != NULL) {
-		arq2 << "Dado" << temp->dado.dado << ", Chave :" << temp->dado.chave <<", OP: " <<temp->dado.op << "\t";
+		arq2 << "Dado: " << temp->dado.dado << ", Chave :" << temp->dado.chave <<", OP: " <<temp->dado.op << "\t";
 		cout << "Dado: " << temp->dado.dado << ", Chave :" << temp->dado.chave << ", OP: " << temp->dado.op << "\t";
 		temp = temp->proximo;
 	}
@@ -110,6 +109,7 @@ void HashEncadeado(){
 		d.chave = geraChave(t);  //gera uma chave a partir da string;;
 		inserir_fim_lista_encadeada(l[d.chave], d);
 	}
+	arq2 << "\nDados gravados: \n";
 	for (int x = 0; x<MAX; x++)
 		escrever(l[x], x);
 	buscaSimulada(l);
